@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>信息索引·ayx 使用说明</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #faf9f8;
+            color: #1f2a3e;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2.5rem 1.25rem 3rem;
+        }
+        .page {
+            max-width: 720px;
+            width: 100%;
+        }
+
+        /* hero 区域 */
+        .hero {
+            margin-bottom: 3rem;
+            padding-bottom: 1.8rem;
+            border-bottom: 1px solid #e2e0dc;
+        }
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            color: #0b1c2f;
+            margin-bottom: 0.4rem;
+            line-height: 1.25;
+        }
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #5e6a7a;
+            font-weight: 350;
+            margin-top: 0.15rem;
+        }
+
+        /* 正文区域 */
+        .section {
+            margin-bottom: 2.8rem;
+        }
+        .section h2 {
+            font-size: 1.6rem;
+            font-weight: 480;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.3px;
+            color: #1f2a3e;
+            border-left: 4px solid #cbd5e1;
+            padding-left: 1rem;
+        }
+        .section p {
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+            color: #2e3b4e;
+        }
+        .section p:last-child { margin-bottom: 0; }
+
+        /* 卡片亮点 */
+        .highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2rem 0 1.2rem;
+        }
+        .highlight-item {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem 1.5rem;
+            flex: 1 1 200px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.04);
+            border: 1px solid #edece9;
+            transition: all 0.1s ease;
+        }
+        .highlight-item:hover {
+            border-color: #cfd8e6;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        .highlight-item h3 {
+            font-size: 1.2rem;
+            font-weight: 480;
+            margin-bottom: 0.4rem;
+            color: #13273e;
+        }
+        .highlight-item p {
+            font-size: 0.95rem;
+            color: #455566;
+            margin-bottom: 0;
+        }
+
+        /* 使用建议列表 */
+        .suggest-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+            margin: 1.8rem 0 1rem;
+        }
+        .suggest-list li {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 1rem 1.25rem;
+            border: 1px solid #eae7e2;
+            font-size: 0.95rem;
+            color: #2b3b51;
+            position: relative;
+            padding-left: 2rem;
+        }
+        .suggest-list li::before {
+            content: "▹";
+            position: absolute;
+            left: 0.85rem;
+            color: #8391a6;
+            font-size: 1.2rem;
+        }
+
+        /* 可信说明 / 提示卡 */
+        .note-block {
+            background: #f4f2ef;
+            border-radius: 14px;
+            padding: 1.5rem 1.8rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 5px solid #b7c3d3;
+        }
+        .note-block p {
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+            color: #2d3e53;
+        }
+        .note-block p:last-child { margin-bottom: 0; }
+
+        .faq-mini {
+            display: grid;
+            gap: 1.2rem;
+            margin: 2rem 0 1rem;
+        }
+        .faq-item {
+            background: transparent;
+            border-bottom: 1px solid #dedbd6;
+            padding: 0.8rem 0;
+        }
+        .faq-item strong {
+            display: block;
+            font-weight: 500;
+            font-size: 1.05rem;
+            color: #1a2c41;
+            margin-bottom: 0.3rem;
+        }
+        .faq-item p {
+            font-size: 0.95rem;
+            color: #415265;
+            margin: 0;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e2dfda;
+            margin: 2.2rem 0 1.8rem;
+        }
+
+        .footer-note {
+            font-size: 0.85rem;
+            color: #6b7a8f;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2dfda;
+            text-align: center;
+        }
+        a {
+            color: #1e4a6f;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s;
+        }
+        a:hover {
+            border-bottom-color: #1e4a6f;
+        }
+
+        @media (max-width: 500px) {
+            body { padding: 1.8rem 1rem; }
+            .hero h1 { font-size: 1.9rem; }
+            .section h2 { font-size: 1.35rem; }
+            .highlights { flex-direction: column; }
+            .highlight-item { padding: 1rem 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- hero -->
+    <div class="hero">
+        <h1>ayx · 信息整理视角</h1>
+        <div class="sub">从资料索引到使用场景，一份克制的说明</div>
+    </div>
+
+    <!-- 摘要 -->
+    <div class="section">
+        <h2>摘要</h2>
+        <p>
+            在持续收集和整理网络资源的过程中，<a href="https://portal-portal-ayx.com">ayx</a> 这个名字多次出现在我的笔记里。
+            它不像一个传统的一站式平台，更像是一组彼此关联的模块——适合那些习惯自己组合工具、按需检索信息的人。
+            本文不打算做全面测评，只是从资料整理的习惯出发，记录下我对它的理解、亮点和使用场景。
+        </p>
+    </div>
+
+    <!-- 特点 / 亮点卡片 -->
+    <div class="section">
+        <h2>几个值得注意的特点</h2>
+        <div class="highlights">
+            <div class="highlight-item">
+                <h3>结构偏向目录式</h3>
+                <p>页面组织有清晰的层级，像一本可翻阅的索引手册，适合快速定位感兴趣的部分，而不是淹没在信息流里。</p>
+            </div>
+            <div class="highlight-item">
+                <h3>内容偏向实用说明</h3>
+                <p>没有过多装饰文案，很多页面直接给出功能定义或操作指引——这对需要快速了解的人来说很友好。</p>
+            </div>
+            <div class="highlight-item">
+                <h3>更新节奏可见</h3>
+                <p>从页面日期和修订记录能看出维护还在继续，不是那种建完就丢的站点，这一点对长期使用者很重要。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 使用建议 (从资料整理角度) -->
+    <div class="section">
+        <h2>从资料整理角度的使用建议</h2>
+        <p>如果你和我一样习惯用本地笔记或书签来管理信息源，下面几个思路可以试试：</p>
+        <ul class="suggest-list">
+            <li>把 <a href="https://portal-portal-ayx.com">ayx</a> 作为某个分类的“锚点链接”，方便日后回溯。</li>
+            <li>浏览时留意页面底部的相关链接，它们往往指向上下游工具或文档。</li>
+            <li>用浏览器阅读模式（或沉浸式插件）可以过滤导航干扰，更聚焦正文。</li>
+            <li>如果发现某个功能不定期更新，建议手动检查一下，有些内容可能不会主动推送。</li>
+            <li>把站点加入本地备份列表（比如 single-file 保存），离线翻阅会更稳定。</li>
+        </ul>
+    </div>
+
+    <!-- 可信但克制的说明 -->
+    <div class="section">
+        <h2>关于使用边界的说明</h2>
+        <div class="note-block">
+            <p><strong>一个事实：</strong>ayx 所提供的功能和信息，大多围绕特定场景设计，并非面向所有人群的通用服务。在将其整合到自己的工作流之前，建议先花十分钟浏览主要栏目，确认是否匹配你的实际需求。</p>
+            <p><strong>另一个事实：</strong>任何索引类工具都会遇到链接失效或内容调整的情况。我通常的做法是：不依赖单一来源，重要信息多方交叉验证。ayx 可以是一个好的起点，但不应是唯一的信息锚点。</p>
+            <p>从资料整理的角度看，标记、分类、定期回顾比收藏不读更有意义——这适用于任何站点，包括 <a href="https://portal-portal-ayx.com">ayx</a>。</p>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 (轻量) -->
+    <div class="section">
+        <h2>FAQ 摘要</h2>
+        <div class="faq-mini">
+            <div class="faq-item">
+                <strong>ayx 适合完全新手吗？</strong>
+                <p>它的页面说明有一定的入门门槛，部分功能需要一些背景知识。建议先阅读“快速开始”或“概述”部分，再决定是否深入。</p>
+            </div>
+            <div class="faq-item">
+                <strong>是否需要注册或付费？</strong>
+                <p>目前主站大部分内容可以直接访问，没有发现强制注册墙。但个别子模块可能存在权限区分，具体以实际页面提示为准。</p>
+            </div>
+            <div class="faq-item">
+                <strong>资料会频繁变动吗？</strong>
+                <p>根据观察，核心框架相对稳定，细节说明会不定期补充。如果你需要引用，建议抓取页面快照或记录时间戳。</p>
+            </div>
+        </div>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #5c6f84;">
+            以上摘要基于个人整理日志，不构成官方答复。更多细节请直接查阅 <a href="https://portal-portal-ayx.com">ayx</a> 对应页面。
+        </p>
+    </div>
+
+    <hr />
+
+    <div class="footer-note">
+        本文仅为资料索引视角的说明，不包含任何形式的推荐或诱导。<br />
+        所有信息请以实际页面为准。最后整理：2025-04
+    </div>
+
+</div>
+</body>
+</html>
